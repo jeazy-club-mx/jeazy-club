@@ -76,6 +76,17 @@
         <input id="registrationSignature" required autocomplete="name">
         <small>Escribe tu nombre completo tal como aparece en tu identificación.</small>
       </div>
+      <section class="nda-step" aria-labelledby="ndaTitle">
+        <div class="pdf" aria-hidden="true">NDA</div>
+        <div>
+          <small class="eyebrow">Documento previo a tu solicitud</small>
+          <h3 id="ndaTitle">Acuerdo de confidencialidad</h3>
+          <p>Descarga y revisa el NDA de Jeazy Club antes de generar tu código de solicitud.</p>
+          <a class="btn secondary nda-download" id="ndaDownload" href="../assets/documentos/NDA_Jeazy_Private_Final.pdf" download>Descargar NDA</a>
+          <span class="nda-download-state" id="ndaDownloadState" role="status">Pendiente de descarga</span>
+        </div>
+      </section>
+      <label class="check"><input id="ndaConfirmation" type="checkbox" required> Confirmo que descargué y revisé el acuerdo de confidencialidad.</label>
       <label class="check"><input id="registrationLegalConsent" type="checkbox" required> Confirmo que leí y acepto el Aviso de Privacidad y los Términos y Condiciones de Jeazy Club.</label>
       <p class="form-message" id="identityMessage" role="status" aria-live="polite"></p>
       <button class="btn" type="submit">Enviar solicitud y generar código</button>

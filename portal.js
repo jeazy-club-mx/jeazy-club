@@ -209,12 +209,21 @@ if (registration) {
   const emailConfirmation = document.querySelector('#emailConfirmation');
   const registrationMessage = document.querySelector('#registrationMessage');
   const identityMessage = document.querySelector('#identityMessage');
+  const ndaDownload = document.querySelector('#ndaDownload');
+  const ndaDownloadState = document.querySelector('#ndaDownloadState');
+  const ndaConfirmation = document.querySelector('#ndaConfirmation');
   const identityFiles = identityForm.querySelectorAll('[data-identity-file]');
   const reviewModeNotice = identityForm.querySelector('#reviewModeNotice');
   const registrationComplete = document.querySelector('#registrationComplete');
   let activeUser = null;
 
   const normalizeName = (value) => value.trim().replace(/\s+/g, ' ').toLowerCase();
+
+  ndaDownload?.addEventListener('click', () => {
+    ndaDownload.dataset.downloaded = 'true';
+    ndaDownloadState.textContent = 'NDA descargado';
+    ndaDownloadState.classList.add('downloaded');
+  });
 
   const setMessage = (element, text, type = '') => {
     element.textContent = text;
@@ -277,6 +286,10 @@ if (registration) {
   };
 
   const initializeRegistration = async () => {
+    if (isLocalPreview && new URLSearchParams(window.location.search).get('preview') === 'nda') {
+      showIdentityStep({ user_metadata: { full_name: 'Vista previa del nuevo socio' } });
+      return;
+    }
     if (!window.jeazySupabase) {
       setMessage(registrationMessage, 'No fue posible conectar con el servicio de registro. Inténtalo nuevamente.', 'error');
       return;
@@ -368,6 +381,12 @@ if (registration) {
 
   identityForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+    if (ndaDownload?.dataset.downloaded !== 'true') {
+      ndaConfirmation.checked = false;
+      setMessage(identityMessage, 'Descarga el acuerdo de confidencialidad antes de generar tu código.', 'error');
+      ndaDownload?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
     if (!activeUser || !window.jeazySupabase) {
       setMessage(identityMessage, 'Tu sesión no está disponible. Inicia sesión nuevamente.', 'error');
       return;
