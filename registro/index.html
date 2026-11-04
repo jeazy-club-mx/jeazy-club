@@ -22,7 +22,7 @@
     <a class="back" href="../">← Volver al sitio público</a>
     <p class="eyebrow">Registro de nuevo socio</p>
     <h1>Comienza tu camino<br><span>dentro del club.</span></h1>
-    <p class="intro">Crea tu acceso y completa en una sola página la documentación, la carga de identificación y el contacto con Jeazy Club.</p>
+    <p class="intro">Crea tu acceso y completa en una sola página tu identificación y el contacto con Jeazy Club.</p>
 
     <form class="form-card" id="registrationForm">
       <div class="form-step"><span>01</span><b>Datos personales y acceso</b></div>
@@ -49,68 +49,8 @@
       <a class="btn secondary" href="./">Ya confirmé mi cuenta</a>
     </section>
 
-    <section class="form-card registration-documents" id="registrationDocuments" hidden>
-      <div class="form-step"><span>02</span><b>Documentación para nuevos suscriptores</b></div>
-      <span class="status">Documentos oficiales</span>
-      <h2>Descarga y conserva estos documentos</h2>
-      <p>Antes de continuar con tu identificación, descarga el Aviso de Privacidad y los Términos y Condiciones de Jeazy Club.</p>
-
-      <div class="registration-document-list">
-        <article class="document legal-document">
-          <span class="pdf" aria-hidden="true">PDF</span>
-          <div>
-            <h3>Aviso de Privacidad</h3>
-            <p>Información sobre el tratamiento y la protección de tus datos personales · 3 páginas.</p>
-            <div class="document-actions">
-              <a class="btn registration-download" href="../assets/documentos/aviso-de-privacidad-jeazyclub.pdf" download="Aviso-de-Privacidad-Jeazy-Club.pdf" data-registration-document="privacy">Descargar PDF</a>
-              <span class="download-state" data-download-state="privacy">Pendiente</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="document legal-document">
-          <span class="pdf" aria-hidden="true">PDF</span>
-          <div>
-            <h3>Términos y Condiciones</h3>
-            <p>Condiciones aplicables al uso del sitio y a los servicios de Jeazy Club · 6 páginas.</p>
-            <div class="document-actions">
-              <a class="btn registration-download" href="../assets/documentos/terminos-y-condiciones-jeazyclub.pdf" download="Terminos-y-Condiciones-Jeazy-Club.pdf" data-registration-document="terms">Descargar PDF</a>
-              <span class="download-state" data-download-state="terms">Pendiente</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="document legal-document">
-          <span class="pdf" aria-hidden="true">PDF</span>
-          <div>
-            <h3>Paquete de documentos para asociados</h3>
-            <p>Solicitud, documentación y condiciones aplicables a la membresía.</p>
-            <div class="document-actions">
-              <a class="btn registration-download" href="../assets/documentos/Jeazy_Club_Paquete_Documentos_Asociados.pdf" download data-registration-document="membership">Descargar PDF</a>
-              <span class="download-state" data-download-state="membership">Pendiente</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="document legal-document">
-          <span class="pdf" aria-hidden="true">PDF</span>
-          <div>
-            <h3>Acuerdo de confidencialidad</h3>
-            <p>Obligaciones de confidencialidad y condiciones para integrantes del club.</p>
-            <div class="document-actions">
-              <a class="btn registration-download" href="../assets/documentos/NDA_Jeazy_Private_Final.pdf" download data-registration-document="nda">Descargar PDF</a>
-              <span class="download-state" data-download-state="nda">Pendiente</span>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <p class="form-message" id="documentDownloadMessage" role="status" aria-live="polite">Descarga los documentos para continuar.</p>
-      <button class="btn" id="continueToIdentity" type="button" disabled>Continuar con identificación</button>
-    </section>
-
     <form class="form-card" id="identityForm" hidden>
-      <div class="form-step"><span>03</span><b>Identificación para revisión</b></div>
+      <div class="form-step"><span>02</span><b>Identificación para revisión</b></div>
       <p class="identity-welcome">Cuenta confirmada para <strong id="identityMemberName">nuevo socio</strong>.</p>
       <div class="fields" id="identityUploads">
         <label class="upload field full">
@@ -136,14 +76,14 @@
         <input id="registrationSignature" required autocomplete="name">
         <small>Escribe tu nombre completo tal como aparece en tu identificación.</small>
       </div>
-      <label class="check"><input id="registrationLegalConsent" type="checkbox" required> Confirmo que descargué, leí y acepto los documentos mostrados en esta solicitud.</label>
+      <label class="check"><input id="registrationLegalConsent" type="checkbox" required> Confirmo que leí y acepto el Aviso de Privacidad y los Términos y Condiciones de Jeazy Club.</label>
       <p class="form-message" id="identityMessage" role="status" aria-live="polite"></p>
       <button class="btn" type="submit">Enviar solicitud y generar código</button>
     </form>
 
     <section class="form-card registration-complete" id="registrationComplete" hidden>
       <span class="status">Solicitud recibida</span>
-      <div class="form-step"><span>04</span><b>Contacto con Jeazy Club</b></div>
+      <div class="form-step"><span>03</span><b>Contacto con Jeazy Club</b></div>
       <h2>Tu código está listo.</h2>
       <p>Compártelo por WhatsApp para vincular esta conversación con tu expediente y recibir las instrucciones correspondientes.</p>
       <div class="registration-contact-grid">
@@ -165,7 +105,7 @@
     </section>
   </main>
 
-  <footer class="portal-footer">Jeazy Club · Tus documentos se almacenan de forma privada</footer>
+  <footer class="portal-footer">Jeazy Club · Tu información se almacena de forma privada</footer>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../supabase-config.js?v=2"></script>
   <script src="../supabase-client.js?v=1"></script>

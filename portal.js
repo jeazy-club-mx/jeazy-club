@@ -207,17 +207,12 @@ if (registration) {
   const reviewerName = 'juan ramon velazquez romo';
   const identityForm = document.querySelector('#identityForm');
   const emailConfirmation = document.querySelector('#emailConfirmation');
-  const registrationDocuments = document.querySelector('#registrationDocuments');
-  const registrationDocumentLinks = registrationDocuments.querySelectorAll('[data-registration-document]');
-  const continueToIdentity = document.querySelector('#continueToIdentity');
-  const documentDownloadMessage = document.querySelector('#documentDownloadMessage');
   const registrationMessage = document.querySelector('#registrationMessage');
   const identityMessage = document.querySelector('#identityMessage');
   const identityFiles = identityForm.querySelectorAll('[data-identity-file]');
   const reviewModeNotice = identityForm.querySelector('#reviewModeNotice');
   const registrationComplete = document.querySelector('#registrationComplete');
   let activeUser = null;
-  const downloadedDocuments = new Set();
 
   const normalizeName = (value) => value.trim().replace(/\s+/g, ' ').toLowerCase();
 
@@ -246,7 +241,6 @@ if (registration) {
     activeUser = user;
     registration.hidden = true;
     emailConfirmation.hidden = true;
-    registrationDocuments.hidden = true;
     identityForm.hidden = true;
     registrationComplete.hidden = false;
     codeElement.textContent = applicationCode;
@@ -273,7 +267,6 @@ if (registration) {
 
     registration.hidden = true;
     emailConfirmation.hidden = true;
-    registrationDocuments.hidden = true;
     identityForm.hidden = false;
     document.querySelector('#identityMemberName').textContent = fullName;
     reviewModeNotice.hidden = !reviewMode;
@@ -282,50 +275,6 @@ if (registration) {
       input.closest('.upload').hidden = reviewMode;
     });
   };
-
-  const documentStorageKey = (user) => `jeazy-registration-documents-v2:${user.id}`;
-
-  const updateDocumentStep = () => {
-    registrationDocumentLinks.forEach((link) => {
-      const documentId = link.dataset.registrationDocument;
-      const state = registrationDocuments.querySelector(`[data-download-state="${documentId}"]`);
-      const downloaded = downloadedDocuments.has(documentId);
-      state.textContent = downloaded ? 'Descargado' : 'Pendiente';
-      state.classList.toggle('downloaded', downloaded);
-    });
-    const completed = downloadedDocuments.size === registrationDocumentLinks.length;
-    continueToIdentity.disabled = !completed;
-    documentDownloadMessage.textContent = completed
-      ? 'Documentos descargados. Ya puedes continuar con tu identificación.'
-      : `Has descargado ${downloadedDocuments.size} de ${registrationDocumentLinks.length} documentos.`;
-    documentDownloadMessage.className = `form-message${completed ? ' success' : ''}`;
-  };
-
-  const showDocumentStep = (user) => {
-    activeUser = user;
-    if (localStorage.getItem(documentStorageKey(user)) === 'yes') {
-      showIdentityStep(user);
-      return;
-    }
-    registration.hidden = true;
-    emailConfirmation.hidden = true;
-    identityForm.hidden = true;
-    registrationDocuments.hidden = false;
-    updateDocumentStep();
-  };
-
-  registrationDocumentLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      downloadedDocuments.add(link.dataset.registrationDocument);
-      updateDocumentStep();
-    });
-  });
-
-  continueToIdentity.addEventListener('click', () => {
-    if (!activeUser || downloadedDocuments.size !== registrationDocumentLinks.length) return;
-    localStorage.setItem(documentStorageKey(activeUser), 'yes');
-    showIdentityStep(activeUser);
-  });
 
   const initializeRegistration = async () => {
     if (!window.jeazySupabase) {
@@ -359,7 +308,7 @@ if (registration) {
           setMessage(identityMessage, 'Continúa con las imágenes pendientes para completar tu expediente.');
         }
       } else {
-        showDocumentStep(user);
+        showIdentityStep(user);
       }
     }
   };
@@ -409,7 +358,7 @@ if (registration) {
     }
 
     if (data.session?.user) {
-      showDocumentStep(data.session.user);
+      showIdentityStep(data.session.user);
       return;
     }
 
