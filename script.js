@@ -3,6 +3,11 @@ const cookie=document.querySelector('#cookie');
 const joinPopup=document.querySelector('#joinPopup');
 const body=document.body;
 const memberIsActive=sessionStorage.getItem('jeazy-session-active')==='yes';
+const recoveryParams=new URLSearchParams(window.location.search);
+const isPasswordRecovery=
+  recoveryParams.has('code')||
+  recoveryParams.get('type')==='recovery'||
+  new URLSearchParams(window.location.hash.slice(1)).get('type')==='recovery';
 let ageConfirmedThisVisit=memberIsActive;
 
 if(!memberIsActive){
@@ -19,6 +24,10 @@ const showJoinOffer=()=>{
 document.querySelector('#ageYes').addEventListener('click',()=>{
   ageConfirmedThisVisit=true;
   localStorage.setItem('jeazy-age-confirmed-at',String(Date.now()));
+  if(isPasswordRecovery){
+    window.location.replace(`nueva-contrasena/${window.location.search}${window.location.hash}`);
+    return;
+  }
   ageGate.classList.remove('show');
   body.classList.remove('locked');
   setTimeout(showJoinOffer,350);
