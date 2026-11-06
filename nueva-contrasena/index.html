@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Crear contraseña nueva | Jeazy Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../portal.css?v=password-recovery-1">
+</head>
+<body>
+  <header class="portal-header">
+    <nav class="portal-nav">
+      <a class="portal-logo" href="../"><img src="../assets/jeazy-club-logo.png" alt="Jeazy Club"></a>
+      <span class="portal-label">Nuevo acceso</span>
+    </nav>
+  </header>
+
+  <main class="shell password-shell">
+    <section class="password-card">
+      <div>
+        <p class="eyebrow">Enlace de recuperación</p>
+        <h1>Crea una<br><span>contraseña nueva.</span></h1>
+        <p class="intro">Utiliza al menos 8 caracteres. Cuando la guardes podrás volver a ingresar con tu correo habitual.</p>
+      </div>
+      <form id="newPasswordForm" class="password-form" aria-busy="true">
+        <div class="field">
+          <label for="newPassword">Contraseña nueva</label>
+          <input id="newPassword" type="password" minlength="8" required autocomplete="new-password" disabled>
+        </div>
+        <div class="field">
+          <label for="confirmNewPassword">Confirmar contraseña</label>
+          <input id="confirmNewPassword" type="password" minlength="8" required autocomplete="new-password" disabled>
+        </div>
+        <p class="form-message" id="newPasswordMessage" role="status" aria-live="polite">Validando tu enlace seguro…</p>
+        <button class="btn" type="submit" disabled>Guardar contraseña nueva</button>
+        <a class="password-recovery-link" href="../recuperar-contrasena/">Solicitar otro enlace</a>
+      </form>
+    </section>
+  </main>
+
+  <footer class="portal-footer">Jeazy Club · Actualización segura de contraseña</footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../supabase-config.js?v=2"></script>
+  <script src="../supabase-client.js?v=1"></script>
+  <script src="../password-recovery.js?v=1"></script>
+</body>
+</html>

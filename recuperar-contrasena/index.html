@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Recuperar contraseña | Jeazy Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../portal.css?v=password-recovery-1">
+</head>
+<body>
+  <header class="portal-header">
+    <nav class="portal-nav">
+      <a class="portal-logo" href="../"><img src="../assets/jeazy-club-logo.png" alt="Jeazy Club"></a>
+      <span class="portal-label">Recuperación de acceso</span>
+    </nav>
+  </header>
+
+  <main class="shell password-shell">
+    <a class="back" href="../acceso/">← Volver al acceso</a>
+    <section class="password-card">
+      <div>
+        <p class="eyebrow">Acceso seguro</p>
+        <h1>Recupera tu<br><span>contraseña.</span></h1>
+        <p class="intro">Escribe el correo con el que registraste tu cuenta. Recibirás un enlace seguro para crear una contraseña nueva.</p>
+      </div>
+      <form id="recoveryRequestForm" class="password-form">
+        <div class="field">
+          <label for="recoveryEmail">Correo electrónico</label>
+          <input id="recoveryEmail" type="email" required autocomplete="email">
+        </div>
+        <p class="form-message" id="recoveryRequestMessage" role="status" aria-live="polite"></p>
+        <button class="btn" type="submit">Enviar enlace de recuperación</button>
+        <p class="password-security-note">Por seguridad, la respuesta será la misma aunque el correo no esté registrado.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="portal-footer">Jeazy Club · Recuperación segura de acceso</footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../supabase-config.js?v=2"></script>
+  <script src="../supabase-client.js?v=1"></script>
+  <script src="../password-recovery.js?v=1"></script>
+</body>
+</html>
